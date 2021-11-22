@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.deepak.apod
 
 import android.app.Application

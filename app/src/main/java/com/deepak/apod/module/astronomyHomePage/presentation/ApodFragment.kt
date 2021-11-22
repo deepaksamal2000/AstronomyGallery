@@ -26,19 +26,26 @@ class ApodFragment : Fragment() {
     }
 
     private fun initObserver() {
-        viewModel.fetchData(context)
-        viewModel.apodDetail.observe(viewLifecycleOwner, { viewData ->
-            binding.data = viewData
-            viewData.date?.let {
-                if (compareDate(it) && !isOnline(requireContext()))
-                    showSnackBar(requireContext(), binding.root, getString(R.string.displayError))
-            }
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner,{
-            it?.let {
-                showSnackBar(requireContext(), binding.root, it)
-            }
-        })
+        viewModel.apply {
+            fetchData(context)
+            apodDetail.observe(viewLifecycleOwner, { viewData ->
+                binding.data = viewData
+                viewData.date?.let {
+                    if (compareDate(it) && !isOnline(requireContext()))
+                        showSnackBar(
+                            requireContext(),
+                            binding.root,
+                            getString(R.string.displayError)
+                        )
+                }
+            })
+            errorMessage.observe(viewLifecycleOwner, {
+                it?.let {
+                    showSnackBar(requireContext(), binding.root, it)
+                }
+            })
+        }
+
     }
 
 

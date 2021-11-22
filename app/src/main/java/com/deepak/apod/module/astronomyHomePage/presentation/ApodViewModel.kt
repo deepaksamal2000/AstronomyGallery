@@ -31,7 +31,7 @@ class ApodViewModel(
         }
     }
 
-    fun fetchApodDetailFromNetwork() {
+    private fun fetchApodDetailFromNetwork() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
@@ -57,7 +57,7 @@ class ApodViewModel(
         }
     }
 
-    fun fetchApodDetailFromDB() {
+    private fun fetchApodDetailFromDB() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
